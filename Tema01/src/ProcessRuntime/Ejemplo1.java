@@ -47,7 +47,7 @@ public class Ejemplo1 {
 			System.out.println("Error en: "+comando);
 			System.out.println(e.getMessage());
 		}
-		// valor devuelto por el comando llamado
+		// valor devuelto por el comando llamado desde Java
 		int exitVal;
 		try {
 			exitVal=p.waitFor();
