@@ -50,6 +50,7 @@ public class Ejemplo1 {
 		// valor devuelto por el comando llamado desde Java
 		int exitVal;
 		try {
+			// Espera hasta que el proceso p termine y retorna el valor devuelto por éste 
 			exitVal=p.waitFor();
 			System.out.println("Valor de Salida: "+exitVal);
 		}
