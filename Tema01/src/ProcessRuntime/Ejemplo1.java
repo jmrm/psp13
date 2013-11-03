@@ -52,7 +52,7 @@ public class Ejemplo1 {
 		try {
 			// Espera hasta que el proceso p termine y retorna el valor devuelto por éste 
 			exitVal=p.waitFor();
-			System.out.println("Valor de Salida: "+exitVal);
+			System.out.println("Valor de Salida : "+exitVal);
 		}
 		catch (InterruptedException ie) {
 			ie.getMessage();
