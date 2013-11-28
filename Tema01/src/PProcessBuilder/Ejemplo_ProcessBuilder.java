@@ -40,7 +40,7 @@ public class Ejemplo_ProcessBuilder {
 		// Recorremos la colección de comando y argumentos mediante la colección List comando
 		// sobre la que iteramos con un iterator
 		List <String> comando=pb.command();
-		Iterator it=comando.iterator();
+		Iterator<String> it=comando.iterator();
 		while (it.hasNext()) System.out.print(it.next());
 		System.out.println("");
 		// un nuevo comando, que ahora vamos a ejecutar
