@@ -4,7 +4,7 @@ public class UsaHiloSimple {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		HiloSimple hs=new HiloSimple();
+		HiloSimple hs=new HiloSimple("Hilo 'hijo'");
 		hs.start();
 		for (int i=0;i<10;i++) System.out.println("Desde fuera del hilo");
 	}
