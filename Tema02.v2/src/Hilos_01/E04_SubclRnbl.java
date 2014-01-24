@@ -8,20 +8,21 @@ public class E04_SubclRnbl {
             Thread.currentThread().getName();
         System.out.format("%s: %s%n",threadName,msg);
     }
-    // MessageLoop es una subclase de threadMessage que implementa Runnable
+    // MessageLoop es una subclase de E04_SubclRnbl que implementa Runnable
     private static class MessageLoop implements Runnable {
     	
         public void run() {
             String info[] = {
-                "Pues ya ves",
-                "por aquí andamos",
-                "pasando el rato",
-                "sin nada mejor que hacer."
+                "Un elefante",
+                "se balanceaba",
+                "en la tela de una araña,",
+                "como veía que no se caía,",
+                "fue a llamar a otro elefante."
             };
             try {
                 for (int i = 0;i < info.length;i++) {
-                    // Pausa de 4 segundos
-                    Thread.sleep(3000);
+                    // Pausa de 2,5 segundos
+                    Thread.sleep(2500);
                     // Llamamos al método que imprime el mensaje
                     threadMessage(info[i]);
                 }
@@ -38,7 +39,7 @@ public class E04_SubclRnbl {
         // Por defecto 10 segundos (también se puede pasar en la línea de comandos)
         long paciencia = 1000 * 10;
 
-        // Si se pasa en la linea de comandos, modificar la espera
+        // Si se pasa un tiempo en la linea de comandos-> modificar la espera
         if (args.length > 0) {
             try {
                 paciencia = Long.parseLong(args[0]) * 1000;
@@ -48,13 +49,14 @@ public class E04_SubclRnbl {
             }
         }
 
-        threadMessage("Arrancando el hilo...");
+      //creamos un Hilo, pero no de la clase E04_SubclRnbl, sino de la subclase MessageLoop
+        Thread t = new Thread(new MessageLoop());
+        threadMessage("Arrancando el hilo MessageLoop...");
         // Tomamos el momento actual para saber el tiempo transcurrido
         long startTime = System.currentTimeMillis();
-      //creamos un Hilo, pero no de la clase E04_SubclRnbl, sino de la subclase MessageLoop
-        Thread t = new Thread(new MessageLoop());	
         t.start();
-        threadMessage("Esperando a que termine el bucle de mensajes");
+        threadMessage("Esperando "+paciencia+" milisegundos a que termine el bucle de mensajes");
+        // Espera a que el hilo MessageLoop termina sólo o, en su caso, lo interrumpe
         while (t.isAlive()) {	//el hilo sigue vivo
             threadMessage("Esperando...");
             //Esperar la reunión del hilo un máximo de un segundo
@@ -63,10 +65,10 @@ public class E04_SubclRnbl {
             if (((System.currentTimeMillis() - startTime) > paciencia) && t.isAlive()) {
             	t.interrupt();
                 threadMessage("El hilo principal dice que se acabó la espera!");
-                // Esperando la reunión definitiva, no debe tardar
+                // Esperando (indefinidamente) a la reunión definitiva, no debe tardar
                 t.join();
             }
         }
-        threadMessage("Fin!");
+        threadMessage("Por fin acabó esta pesadilla!");
     }
 }

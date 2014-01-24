@@ -1,22 +1,23 @@
 package Mthrd;
 
-/* CajerosNS
+/* CajerosSCO
 * Esta clase representa a hilos que son cajeros de banco que acceden de forma
-* concurrente a cuentas bancarias mediante acceso no sincronizado
+* concurrente a cuentas bancarias mediante acceso sincronizado a nivel de código
+* usando un objeto ad-hoc para sincronizar.
 * El programa de prueba creará múltiples hilos cajeros que meten y sacan dinero
 * concurrentemente, sumando el total de ingresos y reintegros la misma cantidad. 
 * Si el número de operaciones es alto y ejecutamos repetidas
-* veces, observaremos que el saldo final no es igual al inicial. El problema es 
-* que estamos accediendo concurrentemente a un dato Cuenta.saldo que es una 
-* sección crítica pero sin sincronizar los accesos (sincronizadamente sólo un 
-* hilo modificaría cada vez), con lo que el resultado final exacto es impredecible
+* veces, observaremos que el saldo final sí es igual al inicial. El problema 
+* que había antes cuando accedíamos concurrentemente a un dato E10_CuentaS.saldo que 
+* era una sección crítica sin sincronizar los accesos ha quedado resuelto. Sólo un
+* hilo puede entrar simultáneamente en esa sección crítica.
 */
 
-public class CajeroNS implements Runnable {
+public class CajeroSCO implements Runnable {
         // Los atributos son el dinero (+ para ingresos - para reintegros)
         // y la cuenta donde se va a operar.
         private double dinero;
-        private Cuenta cuenta;
+        private CuentaSCO cuenta;
 
         // Método run del hilo        
         public void run() {
@@ -31,14 +32,14 @@ public class CajeroNS implements Runnable {
         }
 
         // Constructor del cajero        
-        CajeroNS(Cuenta cuenta,double dinero) {
+        CajeroSCO(CuentaSCO cuenta,double dinero) {
                 this.dinero=dinero;
                 this.cuenta=cuenta;
         }
 
 
         public static void main(String args []) {
-                Cuenta c=null;
+                CuentaSCO c=null;
                 
                 int numOperaciones=999;
                 double saldoInicial=1000.;
@@ -48,15 +49,15 @@ public class CajeroNS implements Runnable {
                          tr[]=new Thread[numOperaciones];
                 
                 // Esta es la cuenta con la que van a operar todos
-                c= new Cuenta("a12315456456df4adf54",saldoInicial);
+                c= new CuentaSCO("a12315456456df4adf54",saldoInicial);
                 System.out.print("Datos iniciales de la cuenta: ");
                 c.println();
                 //Crear los hilos que meten y sacan dinero instanciando Thread a partir
-                // de objetos E09_CajeroNS
+                // de objetos E12_CajeroSCO
                 for (int i=0; i<numOperaciones; i++)
                 {
-                        ti[i]=new Thread(new CajeroNS(c,1.));        //cada E09_CajeroNS de éstos mete 1 euro
-                        tr[i]=new Thread(new CajeroNS(c,-1.));        //cada E09_CajeroNS de éstos saca 1 euro
+                        ti[i]=new Thread(new CajeroSCO(c,1.));        //cada E12_CajeroSCO de éstos mete 1 euro
+                        tr[i]=new Thread(new CajeroSCO(c,-1.));        //cada E12_CajeroSCO de éstos saca 1 euro
                         // Los lanzamos a la vida
                         ti[i].start();
                         tr[i].start();

@@ -1,4 +1,4 @@
-package Mthrd;
+package Hilos_01;
 
 /* CajerosNS
 * Esta clase representa a hilos que son cajeros de banco que acceden de forma
@@ -12,11 +12,11 @@ package Mthrd;
 * hilo modificaría cada vez), con lo que el resultado final exacto es impredecible
 */
 
-public class CajeroNS implements Runnable {
+public class E09_CajeroNS implements Runnable {
         // Los atributos son el dinero (+ para ingresos - para reintegros)
         // y la cuenta donde se va a operar.
         private double dinero;
-        private Cuenta cuenta;
+        private E09_CuentaNS cuenta;
 
         // Método run del hilo        
         public void run() {
@@ -31,14 +31,14 @@ public class CajeroNS implements Runnable {
         }
 
         // Constructor del cajero        
-        CajeroNS(Cuenta cuenta,double dinero) {
+        E09_CajeroNS(E09_CuentaNS cuenta,double dinero) {
                 this.dinero=dinero;
                 this.cuenta=cuenta;
         }
 
 
         public static void main(String args []) {
-                Cuenta c=null;
+                E09_CuentaNS c=null;
                 
                 int numOperaciones=999;
                 double saldoInicial=1000.;
@@ -48,15 +48,15 @@ public class CajeroNS implements Runnable {
                          tr[]=new Thread[numOperaciones];
                 
                 // Esta es la cuenta con la que van a operar todos
-                c= new Cuenta("a12315456456df4adf54",saldoInicial);
+                c= new E09_CuentaNS("a12315456456df4adf54",saldoInicial);
                 System.out.print("Datos iniciales de la cuenta: ");
                 c.println();
                 //Crear los hilos que meten y sacan dinero instanciando Thread a partir
                 // de objetos E09_CajeroNS
                 for (int i=0; i<numOperaciones; i++)
                 {
-                        ti[i]=new Thread(new CajeroNS(c,1.));        //cada E09_CajeroNS de éstos mete 1 euro
-                        tr[i]=new Thread(new CajeroNS(c,-1.));        //cada E09_CajeroNS de éstos saca 1 euro
+                        ti[i]=new Thread(new E09_CajeroNS(c,1.));        //cada E09_CajeroNS de éstos mete 1 euro
+                        tr[i]=new Thread(new E09_CajeroNS(c,-1.));        //cada E09_CajeroNS de éstos saca 1 euro
                         // Los lanzamos a la vida
                         ti[i].start();
                         tr[i].start();

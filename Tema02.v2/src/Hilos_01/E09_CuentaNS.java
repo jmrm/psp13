@@ -1,14 +1,14 @@
-package Mthrd;
+package Hilos_01;
 /*
 * Esta es la clase Cuenta pedida. El código de cuenta no
 * es controlado (en lo que se refiere a los códigos "reales" de un banco)
 * solamente en cuanto al tamaño, que si es más de 10 se trunca y si es menor
 * se rellena con espacios en blanco
 */
-public class Cuenta {
+public class E09_CuentaNS {
         private String numCuenta;
         private double saldo;
-        public Cuenta (String c,double s) {
+        public E09_CuentaNS (String c,double s) {
                 StringBuilder sb=new StringBuilder();
                 String relleno="          ";
                 sb.append(c);
@@ -19,7 +19,7 @@ public class Cuenta {
                                 sb.append(relleno.substring(10-sb.length()));
                 saldo=s;numCuenta=sb.toString();
         }
-        public Cuenta() {
+        public E09_CuentaNS() {
                 this("0123456789",100);
         }
         public String getNumCuenta() {
