@@ -13,9 +13,9 @@ public class E13_PingPong extends Thread {
 	{
 		Thread tP=new E13_PingPong("P");
 		Thread tp=new E13_PingPong("p");
-		tP.setPriority(Thread.MAX_PRIORITY);
+		//tP.setPriority(Thread.MAX_PRIORITY);
 		//tp.setPriority(Thread.MIN_PRIORITY);
-		//tp.start();
+		tp.start();
 		tP.start();
 	}
 }

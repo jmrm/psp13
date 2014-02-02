@@ -4,11 +4,13 @@ public class E14_CajaManzana {
 	private String variedad;
 	private boolean hayManzana = false;
 	
-	public synchronized String get() {
+	public synchronized String get() throws InterruptedException {
 		while (!hayManzana) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
+				notify();
+				throw new InterruptedException();
 			}
 		}
 		hayManzana = false;
@@ -16,11 +18,13 @@ public class E14_CajaManzana {
 		return variedad;
 	}
 	
-	public synchronized void put(String varManzana) {
+	public synchronized void put(String varManzana) throws InterruptedException {
 		while (hayManzana) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
+				notify();
+				throw new InterruptedException();
 			}
 		}
 		variedad = varManzana;

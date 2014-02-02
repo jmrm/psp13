@@ -25,11 +25,11 @@ public class E14_ProductorManzana implements Runnable {
 		String variedad;
 		while (!salir) {
 			variedad=mVariedad[(int)(Math.random()*6)];
-			cajaManzana.put(variedad);
-			System.out.println(Thread.currentThread().getName()+" almacena la variedad:"+variedad);
 			try {
+				cajaManzana.put(variedad);
+				System.out.println(Thread.currentThread().getName()+" almacena la variedad:"+variedad);
 				Thread.sleep((int)(Math.random()*1000));
-			} catch (InterruptedException e) {};
+			} catch (InterruptedException e) {}
 		}
 	}
 
