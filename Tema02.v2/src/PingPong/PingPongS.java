@@ -12,21 +12,21 @@ package PingPong;
 public class PingPongS implements Runnable {
 	private String word;
 	private boolean salir=false;
-	private Object o;
-	public PingPongS(String s, Object ob) {word=s; o=ob;}
+	private Object bloqueo;
+	public PingPongS(String s, Object ob) {word=s; bloqueo=ob;}
 	public void run()
 	{
-		synchronized(o) {
+		synchronized(bloqueo) {
 			while (!salir) {
 				System.out.print(word);
-				o.notify();
+				bloqueo.notify();
 				try {
-					o.wait();
+					bloqueo.wait();
 				}
 				catch (InterruptedException ie) {
 				}
 			}
-			o.notify(); //Se notifica al salir para que el otro hilo se desbloquee
+			bloqueo.notify(); //Se notifica al salir para que el otro hilo se desbloquee
 		}
 		System.out.format("%n%s", Thread.currentThread().toString()+" termina.");
 	} 

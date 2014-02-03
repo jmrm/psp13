@@ -13,6 +13,7 @@ public class E14_CajaManzana {
 				throw new InterruptedException();
 			}
 		}
+		System.out.println(Thread.currentThread().getName()+" obtiene la variedad:"+variedad);
 		hayManzana = false;
 		notify();
 		return variedad;
@@ -28,6 +29,7 @@ public class E14_CajaManzana {
 			}
 		}
 		variedad = varManzana;
+		System.out.println(Thread.currentThread().getName()+" almacena la variedad:"+variedad);
 		hayManzana = true;
 		notify();
 	}

@@ -18,11 +18,11 @@ public class E14_ConsumidorManzana implements Runnable {
 		while (!salir) {
 			try {
 			varied=cajaManzana.get();
-			System.out.println(Thread.currentThread().getName()+" obtuvo variedad: "+varied);
 			}
 			catch (InterruptedException ie) {
 				
 			}
 		}
+		System.out.println(Thread.currentThread().toString()+" termina.");
 	}
 }

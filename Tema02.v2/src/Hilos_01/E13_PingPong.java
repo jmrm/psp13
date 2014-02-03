@@ -6,8 +6,16 @@ public class E13_PingPong extends Thread {
 	public void run()
 	{
 		for (int i=0;i<100;i++)
-		{System.out.print(word);
-		System.out.flush();}
+		{
+			try {
+				System.out.print(word);
+				System.out.flush();
+				sleep(10);
+			}
+			catch (InterruptedException ie) {
+			
+			}
+		}
 	}
 	public static void main(String[] args)
 	{
