@@ -49,21 +49,18 @@ public class SerSockStream2 {
             //Enviamos el mensaje
             out.println(cliConectado);
 
-            //Declara un array de bytes para el mensaje que recibe del cliente
+            //Declara una cadena para el mensaje que recibe del cliente
             String msj, mRecibido = "El servidor dice:ack";
             do{
-                //Crea el array de bytes y lee el mensaje 
+                //Lee el mensaje 
         	    msj=in.readLine();
                 //Muestra el mensaje recibido
                 System.out.println("Mensaje recibido: " + msj +" Leídos:"+msj.length()+" caracteres.");
-                //Confirma la recepción del mensaje al cliente (si no es close)                     
+                //Confirma la recepción del mensaje al cliente                     
                 out.println(mRecibido);
             }while (!msj.equalsIgnoreCase("close")) ;
             
             
-        
-            
-
             //Cierra el socket del cliente
             nuevoCliente.close();
             System.out.println("Socket del cliente cerrado");

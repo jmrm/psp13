@@ -17,7 +17,7 @@ import java.net.Socket;
 public class CliSockStream2 {
 
     public static void main(String[] args) {
-        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader leerDeTeclado = new BufferedReader(new InputStreamReader(System.in));
 
         try {
 
@@ -51,7 +51,7 @@ public class CliSockStream2 {
            do {
                 //Prepara el mensaje para enviarlo
                 System.out.println("Introducir mensaje cliente: ");
-                mensaje = leer.readLine();
+                mensaje = leerDeTeclado.readLine();
                 if (mensaje.length()>0) {
                 	System.out.println("Enviando mensaje al servidor");
                 	//Envia el mensaje
