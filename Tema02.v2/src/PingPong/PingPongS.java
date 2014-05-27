@@ -36,14 +36,14 @@ public class PingPongS implements Runnable {
 	
 	public static void main(String[] args)
 	{
-		Object o=new Object();
+		Object o=new Object(); 
 		PingPongS tP=new PingPongS("P",o);
 		PingPongS tp=new PingPongS("p",o);
 		Thread h1=new Thread(tP);
 		Thread h2=new Thread(tp);
 		h1.start();h2.start();
 		try {
-			Thread.sleep(100);
+			Thread.sleep(250);
 			tP.salida();
 			tp.salida();
 			h1.join();h2.join();
