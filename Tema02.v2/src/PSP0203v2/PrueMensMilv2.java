@@ -3,7 +3,7 @@ package PSP0203v2;
 public class PrueMensMilv2 {
 
 	public static void main(String[] args) {
-		int numRecep=4, capacidadCola=20,i,numMensa=40;
+		int numRecep=4, capacidadCola=4,i,numMensa=40;
 		ReceptorMensMilv2[] receptor=new ReceptorMensMilv2[numRecep]; 
 		Thread[] hiloR=new Thread[numRecep]; 
 		ColaMensajesv2 <PaqueteDatos> m=new ColaMensajesv2 <PaqueteDatos>(capacidadCola);

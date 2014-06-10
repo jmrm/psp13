@@ -1,10 +1,9 @@
 package PSP0203v2;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class ColaMensajesv2 <T>{
-	private Queue<T> cola = new LinkedList<T>();
+	private LinkedList<T> cola = new LinkedList<T>();
 	private int capacidad;
 	private static final String stop="*S*T*O*P*";
 	
@@ -28,11 +27,7 @@ public class ColaMensajesv2 <T>{
 		item= (PaqueteDatos) cola.poll();
 		mensaje=item.getMens();
 		System.out.println(Thread.currentThread().getName()+" recibe el mensaje:"+mensaje+" Tamaño cola:"+cola.size());
-		/*
-		 * Tenemos que usar notifyAll() para despertar siempre al
-		 * emisor, ya que si éste está bloqueado porque la cola está
-		 * llena no podrá finalizar el proceso 
-		 */
+		// Al leer siempre despertamos a todos, para garantizar que se despierta el emisor.
 		notifyAll();
 		return mensaje;
 	}
@@ -55,9 +50,8 @@ public class ColaMensajesv2 <T>{
 		cola.add((T)item);
 		// Si el buffer no está lleno sólo notifica a un hilo
 		// si no a todos
-		if (cola.size()<capacidad) {
-			notify();
-		} else notifyAll();
+		if (cola.size()==capacidad) notifyAll();
+		else notify();
 	}
 	
 	public String getStop() {

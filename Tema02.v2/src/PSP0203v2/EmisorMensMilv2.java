@@ -59,7 +59,7 @@ public class EmisorMensMilv2 implements Runnable {
 				colaMens.put(paqDat);
 				paqEnv++;
 			} catch (InterruptedException e) {}
-			if (!getSalir()) if(paqEnv==numPaquetes) salida();
+			if(paqEnv==numPaquetes) salida();
 		}
 		// A continuación manda a los receptores el mensaje de paro
 		mensa.setLength(0);
