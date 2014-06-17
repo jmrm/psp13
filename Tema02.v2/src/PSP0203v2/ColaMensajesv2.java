@@ -1,9 +1,10 @@
 package PSP0203v2;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class ColaMensajesv2 <T>{
-	private LinkedList<T> cola = new LinkedList<T>();
+	private Queue<T> cola = new LinkedList<T>();
 	private int capacidad;
 	private static final String stop="*S*T*O*P*";
 	
@@ -47,7 +48,7 @@ public class ColaMensajesv2 <T>{
 		mensaje=item.getMens();
 		System.out.println(Thread.currentThread().getName()+
 				" envía el mensaje:"+mensaje+" al destinatario:"+destino);
-		cola.add((T)item);
+		cola.offer((T)item);
 		// Si el buffer no está lleno sólo notifica a un hilo
 		// si no a todos
 		if (cola.size()==capacidad) notifyAll();
